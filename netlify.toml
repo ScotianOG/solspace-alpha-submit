@@ -11,6 +11,14 @@
   NEXT_PUBLIC_NETWORK = "testnet"
   NEXT_PUBLIC_SERVICE_MODE = "free_tier"
 
+# Local Prisma plugin
+[[plugins]]
+  package = "/netlify/plugins/prisma-plugin"
+
+# Nextjs plugin
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 # Redirect all routes to Next.js
 [[redirects]]
   from = "/*"
