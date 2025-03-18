@@ -2,6 +2,7 @@
 [build]
   command = "npm run build"
   publish = ".next"
+  ignore = "false"
 
 # Environment variables
 [build.environment]
@@ -36,10 +37,3 @@
 
 [build.processing.html]
   pretty_urls = true
-
-# Ignore files in the free directory during build
-[build.ignore]
-  files = [
-    "free/*",
-    "free/**/*"
-  ]
