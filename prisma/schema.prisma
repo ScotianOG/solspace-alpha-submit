@@ -1,0 +1,58 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ViralPost {
+  id          String   @id @default(cuid())
+  tweetId     String   @unique
+  content     String
+  author      String
+  authorId    String
+  engagement  Json
+  viralScore  Float
+  tier        Int
+  mintStatus  String   @default("pending") // pending, minting, completed, failed
+  mintProgress Int     @default(0)
+  nftAddress  String?
+  metadataUri String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([mintStatus])
+  @@index([authorId])
+}
+
+model ClaimStatus {
+  id           String   @id @default(cuid())
+  nftAddress   String   @unique
+  tweetId      String
+  authorId     String
+  walletAddress String?
+  status       String   @default("pending") // pending, verified, claimed, failed
+  signatureProof Json?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  claimedAt    DateTime?
+
+  @@index([status])
+  @@index([authorId])
+}
+
+model APILimit {
+  id          String   @id @default(cuid())
+  endpoint    String   @unique
+  usage       Int      @default(0)
+  limit       Int
+  resetAt     DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([endpoint])
+}

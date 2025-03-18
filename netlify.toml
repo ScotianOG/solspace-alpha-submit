@@ -1,0 +1,45 @@
+# Netlify configuration file
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Environment variables
+[build.environment]
+  NEXT_PUBLIC_SOLANA_RPC_URL = "https://api.testnet.sonic.game/"
+  NEXT_PUBLIC_PROGRAM_ID = "9C2HRbrbvf3baZ8vXhQgiDjJRU1K6JoxUSBhpQsuPW3"
+  NEXT_PUBLIC_NETWORK = "testnet"
+  NEXT_PUBLIC_SERVICE_MODE = "free_tier"
+
+# Redirect all routes to Next.js
+[[redirects]]
+  from = "/*"
+  to = "/_next/static/:splat"
+  status = 200
+  force = false
+  conditions = {Path = ["/_next/static/*"]}
+
+# SPA fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Custom 404 page
+[[redirects]]
+  from = "/*"
+  status = 404
+  to = "/404.html"
+
+# Exclude free directory from build
+[build.processing]
+  skip_processing = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# Ignore files in the free directory during build
+[build.ignore]
+  files = [
+    "free/*",
+    "free/**/*"
+  ]

@@ -1,0 +1,194 @@
+{
+  "version": "0.1.0",
+  "name": "solspace",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "counter",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "mintViralPost",
+      "accounts": [
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "counter",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "viralPost",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "contentId",
+          "type": "string"
+        },
+        {
+          "name": "authorId",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "upgradeTier",
+      "accounts": [
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "counter",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "viralPost",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newTier",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "claimViralPost",
+      "accounts": [
+        {
+          "name": "claimer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "counter",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "viralPost",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Counter",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "count",
+            "type": "u64"
+          },
+          {
+            "name": "viralPostsMinted",
+            "type": "u64"
+          },
+          {
+            "name": "viralPostsClaimed",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ViralPost",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "contentId",
+            "type": "string"
+          },
+          {
+            "name": "authorId",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "i64"
+          },
+          {
+            "name": "tier",
+            "type": "u8"
+          },
+          {
+            "name": "claimed",
+            "type": "bool"
+          },
+          {
+            "name": "claimedAt",
+            "type": { "option": "i64" }
+          },
+          {
+            "name": "lastUpgraded",
+            "type": { "option": "i64" }
+          },
+          {
+            "name": "claimer",
+            "type": { "option": "publicKey" }
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidTierUpgrade",
+      "msg": "Cannot downgrade tier"
+    },
+    {
+      "code": 6001,
+      "name": "AlreadyClaimed",
+      "msg": "Post already claimed"
+    }
+  ],
+  "metadata": {
+    "address": "Faf5BtxWH49YzC6UEcHSXyi6h6SgcWMGD1hz4rKxjgCL"
+  }
+}

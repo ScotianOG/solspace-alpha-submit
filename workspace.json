@@ -1,0 +1,10 @@
+{
+  "programs": {
+    "testnet": {
+      "solspace": "EJPvo6CPGC8Pj9p25zdyXqipQac4Bt1RXn9X4fQ9XnC4"
+    }
+  },
+  "workspaces": [
+    "program"
+  ]
+}

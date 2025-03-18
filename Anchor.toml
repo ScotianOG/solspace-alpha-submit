@@ -1,0 +1,16 @@
+[features]
+seeds = false
+skip-lint = false
+
+[programs.testnet]
+solspace = "9C2HRbrbvf3baZ8vXhQgiDjJRU1K6JoxUSBhpQsuPW3"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "https://rpc.testnet-alpha.sonic.game"
+wallet = "./deploy-keypair.json"
+
+[scripts]
+test = "ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
