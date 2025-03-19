@@ -1,0 +1,9 @@
+{
+  "name": "netlify-plugin-prisma",
+  "version": "1.0.0",
+  "description": "Netlify plugin for Prisma client generation",
+  "main": "index.cjs",
+  "type": "commonjs",
+  "author": "SOLspace",
+  "license": "MIT"
+}
