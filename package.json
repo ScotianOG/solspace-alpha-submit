@@ -9,7 +9,10 @@
   "scripts": {
     "dev": "next dev",
     "prisma:generate": "prisma generate",
-    "build": "prisma generate && next build",
+    "rebuild": "npm rebuild",
+    "rebuild:prisma": "cd node_modules/@prisma/client && npx prisma generate",
+    "netlify:prebuild": "node scripts/netlify-prebuild.js",
+    "build": "NODE_OPTIONS=--max_old_space_size=4096 npm run netlify:prebuild && prisma generate && npm run rebuild && next build",
     "start": "next start",
     "lint": "next lint",
     "deploy:sonic": "./scripts/deploy-sonic.sh",

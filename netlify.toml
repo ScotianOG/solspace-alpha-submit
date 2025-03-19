@@ -1,6 +1,6 @@
 # Netlify configuration file
 [build]
-  command = "npx prisma generate && next build"
+  command = "NODE_OPTIONS=--max_old_space_size=4096 npm run build"
   publish = ".next"
   ignore = "false"
 
@@ -11,6 +11,9 @@
   NEXT_PUBLIC_NETWORK = "testnet"
   NEXT_PUBLIC_SERVICE_MODE = "free_tier"
   DATABASE_URL = "file:./dev.db"
+  NODE_OPTIONS = "--max_old_space_size=4096"
+  NETLIFY = "true"
+  NODE_ENV = "production"
 
 # Nextjs plugin
 [[plugins]]
