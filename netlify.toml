@@ -1,6 +1,6 @@
 # Netlify configuration file
 [build]
-  command = "npm run build"
+  command = "npx prisma generate && next build"
   publish = ".next"
   ignore = "false"
 
@@ -10,10 +10,7 @@
   NEXT_PUBLIC_PROGRAM_ID = "9C2HRbrbvf3baZ8vXhQgiDjJRU1K6JoxUSBhpQsuPW3"
   NEXT_PUBLIC_NETWORK = "testnet"
   NEXT_PUBLIC_SERVICE_MODE = "free_tier"
-
-# Local Prisma plugin
-[[plugins]]
-  package = "./netlify/plugins/prisma-plugin"
+  DATABASE_URL = "file:./dev.db"
 
 # Nextjs plugin
 [[plugins]]
