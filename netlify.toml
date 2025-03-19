@@ -11,7 +11,7 @@
   NEXT_PUBLIC_NETWORK = "testnet"
   NEXT_PUBLIC_SERVICE_MODE = "free_tier"
 
-# Local Prisma plugin - path is relative to the published directory
+# Local Prisma plugin
 [[plugins]]
   package = "./netlify/plugins/prisma-plugin"
 
