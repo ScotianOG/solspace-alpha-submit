@@ -4,13 +4,18 @@
  */
 
 // Patches for known issues
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get the current file's directory with ES module support
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.join(__dirname, '..');
 
 // 1. Create an empty dev.db file for SQLite
-const fs = require('fs');
-const path = require('path');
-
 // Create prisma directory if it doesn't exist
-const prismaDir = path.join(process.cwd(), 'prisma');
+const prismaDir = path.join(rootDir, 'prisma');
 if (!fs.existsSync(prismaDir)) {
   fs.mkdirSync(prismaDir, { recursive: true });
 }
@@ -20,7 +25,7 @@ fs.writeFileSync(path.join(prismaDir, 'dev.db'), '');
 console.log('Created empty dev.db file for SQLite');
 
 // 2. Ensure the node_modules/.prisma directory exists
-const prismaBinDir = path.join(process.cwd(), 'node_modules', '.prisma');
+const prismaBinDir = path.join(rootDir, 'node_modules', '.prisma');
 if (!fs.existsSync(prismaBinDir)) {
   fs.mkdirSync(prismaBinDir, { recursive: true });
 }
